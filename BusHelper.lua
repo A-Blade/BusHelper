@@ -17,7 +17,7 @@ local https = require('ssl.https')
 local ltn12 = require('ltn12')
 local dlstatus = require('moonloader').download_status
 local updateUrl = 'https://raw.githubusercontent.com/A-Blade/BusHelper/main/update.json'
-local localVersion = 8
+local localVersion = 9
 local updateFile = getWorkingDirectory() .. '\\bushelper_update.json'
 
 
@@ -1534,3 +1534,4 @@ function imgui.TextColoredRGB(text)
 
     render_text(text)
 end
+
