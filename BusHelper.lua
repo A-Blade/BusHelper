@@ -12,19 +12,19 @@ local sampev = require 'lib.samp.events'
 require 'lib.samp.events'
 local memory = require 'memory'
 local json = require('json')
-local lfs = require 'lfs'  -- библиотека для работы с файлами и папками
+local lfs = require 'lfs'  -- Р±РёР±Р»РёРѕС‚РµРєР° РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ С„Р°Р№Р»Р°РјРё Рё РїР°РїРєР°РјРё
 local https = require('ssl.https')
 local ltn12 = require('ltn12')
 local dlstatus = require('moonloader').download_status
 local updateUrl = 'https://raw.githubusercontent.com/A-Blade/BusHelper/main/update.json'
-local localVersion = 8
+local localVersion = 9
 local updateFile = getWorkingDirectory() .. '\\bushelper_update.json'
 
 
 local larcDataFile = 'Bus Helper//larc_data.json'
 local folderPath = 'Bus Helper'
 
--- проверка и создание папки
+-- РїСЂРѕРІРµСЂРєР° Рё СЃРѕР·РґР°РЅРёРµ РїР°РїРєРё
 local function ensureDirExists(path)
     local attr = lfs.attributes(path)
     if not attr then
@@ -162,44 +162,44 @@ local cost = {
 }
 
 local nameMap = {
-	[':item8552:'] = 'Ларец мусорщика',
-	[':item555:'] = 'Бронзовая рулетка',
-	[':item556:'] = 'Серебряная рулетка',
-	[':item557:'] = 'Золотая рулетка',
-	[':item1425:'] = 'Платиновая рулетка',
+	[':item8552:'] = 'Р›Р°СЂРµС† РјСѓСЃРѕСЂС‰РёРєР°',
+	[':item555:'] = 'Р‘СЂРѕРЅР·РѕРІР°СЏ СЂСѓР»РµС‚РєР°',
+	[':item556:'] = 'РЎРµСЂРµР±СЂСЏРЅР°СЏ СЂСѓР»РµС‚РєР°',
+	[':item557:'] = 'Р—РѕР»РѕС‚Р°СЏ СЂСѓР»РµС‚РєР°',
+	[':item1425:'] = 'РџР»Р°С‚РёРЅРѕРІР°СЏ СЂСѓР»РµС‚РєР°',
 	[':item1852:'] = 'Supper Car Box',
-	[':item3559:'] = 'Ларец организации',
+	[':item3559:'] = 'Р›Р°СЂРµС† РѕСЂРіР°РЅРёР·Р°С†РёРё',
 	[':item1637:'] = 'Rare Box Yellow',
 	[':item1639:'] = 'Rare Box Blue',
 	[':item1638:'] = 'Rare Box Red',
-	[':item5323:'] = 'Ларец Vice City',
-	[':item1766:'] = 'Ящик Marvel',
-	[':item1767:'] = 'Ящик Джентельменов',
-	[':item1768:'] = 'Ящик Minecraft',
-	[':item3992:'] = 'Ларец Водителя Автобуса',
-	[':item1770:'] = 'Супер авто-ящик',
-	[':item1939:'] = 'Ностальгический ящик',
-	[':item2149:'] = 'Ларец Олигарха',
-	[':item1853:'] = 'Ларец Премии',
-	[':item2187:'] = 'Ларец кастомных аксессуаров',
-	[':item3565:'] = 'Ларец крафтера',
-	[':item3991:'] = 'Ларец Mortal Combat',
-	[':item5810:'] = 'Ларец хэллоуина 2022',
-	[':item6199:'] = 'Ларец семейных охранников',
-	[':item6234:'] = 'Ларец петуха',
-	[':item7480:'] = 'Ларец Fortnite',
-	[':item7698:'] = 'Пасхальный ларец 2024',
-	[':item3623:'] = 'Ларец дальнобойщика',
-	[':item4792:'] = 'Ларец Пилота',
-	[':item4793:'] = 'Ларец развозчика продуктов',
-	[':item2002:'] = 'Одежда из секонд-хенда',
-	[':item4584:'] = 'Рандомный Ларец',
+	[':item5323:'] = 'Р›Р°СЂРµС† Vice City',
+	[':item1766:'] = 'РЇС‰РёРє Marvel',
+	[':item1767:'] = 'РЇС‰РёРє Р”Р¶РµРЅС‚РµР»СЊРјРµРЅРѕРІ',
+	[':item1768:'] = 'РЇС‰РёРє Minecraft',
+	[':item3992:'] = 'Р›Р°СЂРµС† Р’РѕРґРёС‚РµР»СЏ РђРІС‚РѕР±СѓСЃР°',
+	[':item1770:'] = 'РЎСѓРїРµСЂ Р°РІС‚Рѕ-СЏС‰РёРє',
+	[':item1939:'] = 'РќРѕСЃС‚Р°Р»СЊРіРёС‡РµСЃРєРёР№ СЏС‰РёРє',
+	[':item2149:'] = 'Р›Р°СЂРµС† РћР»РёРіР°СЂС…Р°',
+	[':item1853:'] = 'Р›Р°СЂРµС† РџСЂРµРјРёРё',
+	[':item2187:'] = 'Р›Р°СЂРµС† РєР°СЃС‚РѕРјРЅС‹С… Р°РєСЃРµСЃСЃСѓР°СЂРѕРІ',
+	[':item3565:'] = 'Р›Р°СЂРµС† РєСЂР°С„С‚РµСЂР°',
+	[':item3991:'] = 'Р›Р°СЂРµС† Mortal Combat',
+	[':item5810:'] = 'Р›Р°СЂРµС† С…СЌР»Р»РѕСѓРёРЅР° 2022',
+	[':item6199:'] = 'Р›Р°СЂРµС† СЃРµРјРµР№РЅС‹С… РѕС…СЂР°РЅРЅРёРєРѕРІ',
+	[':item6234:'] = 'Р›Р°СЂРµС† РїРµС‚СѓС…Р°',
+	[':item7480:'] = 'Р›Р°СЂРµС† Fortnite',
+	[':item7698:'] = 'РџР°СЃС…Р°Р»СЊРЅС‹Р№ Р»Р°СЂРµС† 2024',
+	[':item3623:'] = 'Р›Р°СЂРµС† РґР°Р»СЊРЅРѕР±РѕР№С‰РёРєР°',
+	[':item4792:'] = 'Р›Р°СЂРµС† РџРёР»РѕС‚Р°',
+	[':item4793:'] = 'Р›Р°СЂРµС† СЂР°Р·РІРѕР·С‡РёРєР° РїСЂРѕРґСѓРєС‚РѕРІ',
+	[':item2002:'] = 'РћРґРµР¶РґР° РёР· СЃРµРєРѕРЅРґ-С…РµРЅРґР°',
+	[':item4584:'] = 'Р Р°РЅРґРѕРјРЅС‹Р№ Р›Р°СЂРµС†',
 	[':item3920:'] = 'Concept Car Luxury',
-	[':item4242:'] = 'Ларец рыболова',
-	[':item4794:'] = 'Ларец кладоискателя',
-	[':item1769:'] = 'Супер мото-ящик',
-	[':item7759:'] = 'Ларец Arizona',
-	[':item5479:'] = 'Ларец Tidex'
+	[':item4242:'] = 'Р›Р°СЂРµС† СЂС‹Р±РѕР»РѕРІР°',
+	[':item4794:'] = 'Р›Р°СЂРµС† РєР»Р°РґРѕРёСЃРєР°С‚РµР»СЏ',
+	[':item1769:'] = 'РЎСѓРїРµСЂ РјРѕС‚Рѕ-СЏС‰РёРє',
+	[':item7759:'] = 'Р›Р°СЂРµС† Arizona',
+	[':item5479:'] = 'Р›Р°СЂРµС† Tidex'
 }
 
 local hourlyStartTime = os.time()
@@ -235,7 +235,7 @@ local function loadLarcData()
             larcData = decoded.larc
             blockData = decoded.block or {}
         elseif type(decoded) == "table" and #decoded > 0 and decoded[1].item then
-            -- старый формат: просто массив ларцов
+            -- СЃС‚Р°СЂС‹Р№ С„РѕСЂРјР°С‚: РїСЂРѕСЃС‚Рѕ РјР°СЃСЃРёРІ Р»Р°СЂС†РѕРІ
             larcData = decoded
             blockData = {}
         else
@@ -271,55 +271,55 @@ local function saveLarcData()
 end
 
 function checkUpdate()
-    print('[Bus Helper] checkUpdate() вызван')
-    -- Загружаем update.json
+    print('[Bus Helper] checkUpdate() РІС‹Р·РІР°РЅ')
+    -- Р—Р°РіСЂСѓР¶Р°РµРј update.json
     local response = {}
     local result, status = https.request{
         url = updateUrl,
         sink = ltn12.sink.table(response)
     }
     if status ~= 200 then
-        print('[Bus Helper] Ошибка HTTP-запроса: статус ' .. tostring(status))
+        print('[Bus Helper] РћС€РёР±РєР° HTTP-Р·Р°РїСЂРѕСЃР°: СЃС‚Р°С‚СѓСЃ ' .. tostring(status))
         return
     end
     local content = table.concat(response)
-    -- Удаляем BOM, если есть
+    -- РЈРґР°Р»СЏРµРј BOM, РµСЃР»Рё РµСЃС‚СЊ
     if content:sub(1,3) == '\239\187\191' then
         content = content:sub(4)
-        print('[Bus Helper] BOM удалён')
+        print('[Bus Helper] BOM СѓРґР°Р»С‘РЅ')
     end
-    -- Парсим JSON
+    -- РџР°СЂСЃРёРј JSON
     local ok, info = pcall(json.decode, content)
     if not ok or type(info) ~= 'table' then
-        print('[Bus Helper] Ошибка парсинга update.json')
+        print('[Bus Helper] РћС€РёР±РєР° РїР°СЂСЃРёРЅРіР° update.json')
         return
     end
-    print('[Bus Helper] Версия на сервере: ' .. tostring(info.version))
-    -- Если версия новее — качаем Lua вручную
+    print('[Bus Helper] Р’РµСЂСЃРёСЏ РЅР° СЃРµСЂРІРµСЂРµ: ' .. tostring(info.version))
+    -- Р•СЃР»Рё РІРµСЂСЃРёСЏ РЅРѕРІРµРµ вЂ” РєР°С‡Р°РµРј Lua РІСЂСѓС‡РЅСѓСЋ
     if tonumber(info.version) > localVersion then
-        sampAddChatMessage('[Bus Helper] Доступна новая версия. Обновляем...', 0xFFFF00)
+        sampAddChatMessage('[Bus Helper] Р”РѕСЃС‚СѓРїРЅР° РЅРѕРІР°СЏ РІРµСЂСЃРёСЏ. РћР±РЅРѕРІР»СЏРµРј...', 0xFFFF00)
         local luaBuffer = {}
         local result, luaStatus = https.request{
             url = info.url,
             sink = ltn12.sink.table(luaBuffer)
         }
         if luaStatus ~= 200 then
-            sampAddChatMessage('[Bus Helper] Ошибка загрузки новой версии.', 0xFF0000)
+            sampAddChatMessage('[Bus Helper] РћС€РёР±РєР° Р·Р°РіСЂСѓР·РєРё РЅРѕРІРѕР№ РІРµСЂСЃРёРё.', 0xFF0000)
             return
         end
         local luaContent = table.concat(luaBuffer)
-        -- Сохраняем Lua как UTF-8 без BOM
+        -- РЎРѕС…СЂР°РЅСЏРµРј Lua РєР°Рє UTF-8 Р±РµР· BOM
         local file = io.open(thisScript().path, 'wb')
         if not file then
-            sampAddChatMessage('[Bus Helper] Не удалось сохранить новую версию.', 0xFF0000)
+            sampAddChatMessage('[Bus Helper] РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕС…СЂР°РЅРёС‚СЊ РЅРѕРІСѓСЋ РІРµСЂСЃРёСЋ.', 0xFF0000)
             return
         end
         file:write(luaContent)
         file:close()
-        sampAddChatMessage('[Bus Helper] Обновление завершено. Перезапуск...', 0x00FF00)
+        sampAddChatMessage('[Bus Helper] РћР±РЅРѕРІР»РµРЅРёРµ Р·Р°РІРµСЂС€РµРЅРѕ. РџРµСЂРµР·Р°РїСѓСЃРє...', 0x00FF00)
         thisScript():reload()
     else
-        sampAddChatMessage('[Bus Helper] Скрипт актуален.', 0x00FF00)
+        sampAddChatMessage('[Bus Helper] РЎРєСЂРёРїС‚ Р°РєС‚СѓР°Р»РµРЅ.', 0x00FF00)
     end
 end
 
@@ -327,17 +327,17 @@ end
 function main()
 	if not isSampLoaded() or not isSampfuncsLoaded() then return end
 	repeat wait(0) until isSampAvailable()
-	msg('Скрипт запущен | Открыть меню: /bus или F4 | Автор: '..table.concat(this.authors, ', '))
+	msg('РЎРєСЂРёРїС‚ Р·Р°РїСѓС‰РµРЅ | РћС‚РєСЂС‹С‚СЊ РјРµРЅСЋ: /bus РёР»Рё F4 | РђРІС‚РѕСЂ: '..table.concat(this.authors, ', '))
 
 	checkUpdate()
 	loadLarcData()
  
 	mwSy = lareCost[0] and 342 or 242
 
-	-- Команда на открытие меню
+	-- РљРѕРјР°РЅРґР° РЅР° РѕС‚РєСЂС‹С‚РёРµ РјРµРЅСЋ
 	sampRegisterChatCommand('bus', function() mainSt[0] = not mainSt[0] end)
 	sampRegisterChatCommand('chest', function() larcStatsSt[0] = not larcStatsSt[0] end)
-	-- Отдельный поток для клавиши F4
+	-- РћС‚РґРµР»СЊРЅС‹Р№ РїРѕС‚РѕРє РґР»СЏ РєР»Р°РІРёС€Рё F4
 	lua_thread.create(function()
 		while true do
 			wait(0)
@@ -379,7 +379,7 @@ function main()
 			local hours = math.floor(remainingTime / 3600)
 			local minutes = math.floor((remainingTime % 3600) / 60)
 			sampAddChatMessage(string.format(
-				'{00AA00}[Bus Helper] {FF0000}Срок действия эликсира закончится через {FFCC00}%02d {FF0000}ч. {FFCC00}%02d {FF0000}мин.',
+				'{00AA00}[Bus Helper] {FF0000}РЎСЂРѕРє РґРµР№СЃС‚РІРёСЏ СЌР»РёРєСЃРёСЂР° Р·Р°РєРѕРЅС‡РёС‚СЃСЏ С‡РµСЂРµР· {FFCC00}%02d {FF0000}С‡. {FFCC00}%02d {FF0000}РјРёРЅ.',
 				hours, minutes), 0xFFFFFF)
 		end
 	end
@@ -390,14 +390,14 @@ function main()
 		if setts.main.elixiruse and setts.main.elixiruse ~= 0 then
 			local elapsedTime = currentTime - setts.main.elixiruse
 			if elapsedTime >= 7200 then
-				sampAddChatMessage('{00AA00}[Bus Helper] {FF0000}Действие эликсира закончилось, зарплата уменьшилась!!!!', 0xFFFFFF)
+				sampAddChatMessage('{00AA00}[Bus Helper] {FF0000}Р”РµР№СЃС‚РІРёРµ СЌР»РёРєСЃРёСЂР° Р·Р°РєРѕРЅС‡РёР»РѕСЃСЊ, Р·Р°СЂРїР»Р°С‚Р° СѓРјРµРЅСЊС€РёР»Р°СЃСЊ!!!!', 0xFFFFFF)
 				dangSt[0] = true
 				proxyCfg.main.elixiruse = 0
 				inicfg.save(setts)
 			end
 		end
 
-		-- Проверка на 5:40 по локальному времени
+		-- РџСЂРѕРІРµСЂРєР° РЅР° 5:40 РїРѕ Р»РѕРєР°Р»СЊРЅРѕРјСѓ РІСЂРµРјРµРЅРё
 		local timeTable = os.date("*t")
 		if timeTable.hour == 5 and timeTable.min == 40 then
 			sampProcessChatInput("/reconnect")
@@ -410,7 +410,7 @@ end
 function resetStat()
     stats.main = {money = 0, larec = 0, lcost = 0, reys = 0, hreys = 0, hmoney = 0, hlarec = 0, hlcost = 0}
     inicfg.save(stats, 'Bus Helper//Stats.ini')
-    msg('Статистика сброшена')
+    msg('РЎС‚Р°С‚РёСЃС‚РёРєР° СЃР±СЂРѕС€РµРЅР°')
 end
 
 local mainWin = imgui.OnFrame(function() return mainSt[0] and not isGamePaused() and not isPauseMenuActive() end,
@@ -429,7 +429,7 @@ function(self)
 		else
 			imgui.PushStyleColor(imgui.Col.Button, imgui.ImVec4(0.2, 0.8, 0.2, 1.0))
 		end
-		if imgui.Button(statsSt[0] and u8'Скрыть статистику' or u8'Показать статистику', mVec2(148, 24)) then
+		if imgui.Button(statsSt[0] and u8'РЎРєСЂС‹С‚СЊ СЃС‚Р°С‚РёСЃС‚РёРєСѓ' or u8'РџРѕРєР°Р·Р°С‚СЊ СЃС‚Р°С‚РёСЃС‚РёРєСѓ', mVec2(148, 24)) then
 			statsSt[0] = not statsSt[0]
 			proxyCfg.main.statsSt = statsSt[0]
 		end
@@ -437,7 +437,7 @@ function(self)
 		imgui.SameLine()
 		imgui.PushStyleColor(imgui.Col.Button, imgui.ImVec4(0.8, 0.2, 0.2, 1.0))
 		imgui.PushStyleColor(imgui.Col.Text, imgui.ImVec4(1.0, 1.0, 1.0, 1.0))
-		if imgui.Button(u8'Сбросить статистику', mVec2(148, 24)) then
+		if imgui.Button(u8'РЎР±СЂРѕСЃРёС‚СЊ СЃС‚Р°С‚РёСЃС‚РёРєСѓ', mVec2(148, 24)) then
 			resetStat()
 		end
 		imgui.PopStyleColor(2)
@@ -451,7 +451,7 @@ function(self)
 		imgui.PushStyleColor(imgui.Col.ButtonHovered, imgui.ImVec4(1.0, 0.75, 0.3, 1.0))
 		imgui.PushStyleColor(imgui.Col.ButtonActive, imgui.ImVec4(1.0, 0.7, 0.2, 1.0))
 		imgui.PushStyleColor(imgui.Col.Text, textColor)
-		if imgui.Button(u8'Поделиться статистикой в /jb', imgui.ImVec2(buttonWidth, buttonHeight)) then
+		if imgui.Button(u8'РџРѕРґРµР»РёС‚СЊСЃСЏ СЃС‚Р°С‚РёСЃС‚РёРєРѕР№ РІ /jb', imgui.ImVec2(buttonWidth, buttonHeight)) then
 			sendJBMessage()
 		end
 		imgui.PopStyleColor(4)
@@ -459,11 +459,11 @@ function(self)
 		imgui.Spacing()
 		imgui.Spacing()
 		imgui.Spacing()	
-		if imgui.Checkbox(u8'Статистика в чат', infoToChat) then proxyCfg.main.infoToChat = infoToChat[0] end
+		if imgui.Checkbox(u8'РЎС‚Р°С‚РёСЃС‚РёРєР° РІ С‡Р°С‚', infoToChat) then proxyCfg.main.infoToChat = infoToChat[0] end
 		imgui.Spacing()
 		imgui.Spacing()
 		imgui.Spacing()	
-		if imgui.Checkbox(u8'Подсчёт цены ларцов', lareCost) then proxyCfg.main.lareCost = lareCost[0] mwSy = lareCost[0] and 342 or 242 end
+		if imgui.Checkbox(u8'РџРѕРґСЃС‡С‘С‚ С†РµРЅС‹ Р»Р°СЂС†РѕРІ', lareCost) then proxyCfg.main.lareCost = lareCost[0] mwSy = lareCost[0] and 342 or 242 end
 		if lareCost[0] then
 			imgui.PushItemWidth(210)
 			imgui.Spacing()
@@ -471,26 +471,26 @@ function(self)
 			imgui.Spacing()
 			imgui.Separator()
 			imgui.PushStyleColor(imgui.Col.Text, imgui.ImVec4(1.0, 1.0, 0.0, 1.0))
-			imgui.CenterText(u8'Цены ларцов')
+			imgui.CenterText(u8'Р¦РµРЅС‹ Р»Р°СЂС†РѕРІ')
 			imgui.PopStyleColor()
 			imgui.PushItemWidth(100)
-			if imgui.InputInt(u8'Бронзовая рулетка', cost.brrul, 0, 0) then
+			if imgui.InputInt(u8'Р‘СЂРѕРЅР·РѕРІР°СЏ СЂСѓР»РµС‚РєР°', cost.brrul, 0, 0) then
 				if cost.brrul[0] < 0 then cost.brrul[0] = 0 end
 				proxyCfg.cost.brrul = cost.brrul[0]
 			end
-			if imgui.InputInt(u8'Серебряная рулетка', cost.serrul, 0, 0) then
+			if imgui.InputInt(u8'РЎРµСЂРµР±СЂСЏРЅР°СЏ СЂСѓР»РµС‚РєР°', cost.serrul, 0, 0) then
 				if cost.serrul[0] < 0 then cost.serrul[0] = 0 end
 				proxyCfg.cost.serrul = cost.serrul[0]
 			end
-			if imgui.InputInt(u8'Золотая рулетка', cost.zolrul, 0, 0) then
+			if imgui.InputInt(u8'Р—РѕР»РѕС‚Р°СЏ СЂСѓР»РµС‚РєР°', cost.zolrul, 0, 0) then
 				if cost.zolrul[0] < 0 then cost.zolrul[0] = 0 end
 				proxyCfg.cost.zolrul = cost.zolrul[0]
 			end
-			if imgui.InputInt(u8'Платиновая рулетка', cost.platrul, 0, 0) then
+			if imgui.InputInt(u8'РџР»Р°С‚РёРЅРѕРІР°СЏ СЂСѓР»РµС‚РєР°', cost.platrul, 0, 0) then
 				if cost.platrul[0] < 0 then cost.platrul[0] = 0 end
 				proxyCfg.cost.platrul = cost.platrul[0]
 			end
-			if imgui.InputInt(u8'Ларец мусорщика', cost.garbage, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† РјСѓСЃРѕСЂС‰РёРєР°', cost.garbage, 0, 0) then
 				if cost.garbage[0] < 0 then cost.garbage[0] = 0 end
 				proxyCfg.cost.garbage = cost.garbage[0]
 			end
@@ -498,7 +498,7 @@ function(self)
 				if cost.supercar[0] < 0 then cost.supercar[0] = 0 end
 				proxyCfg.cost.supercar = cost.supercar[0]
 			end
-			if imgui.InputInt(u8'Ларец организации', cost.org, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† РѕСЂРіР°РЅРёР·Р°С†РёРё', cost.org, 0, 0) then
 				if cost.org[0] < 0 then cost.org[0] = 0 end
 				proxyCfg.cost.org = cost.org[0]
 			end
@@ -514,91 +514,91 @@ function(self)
 				if cost.rareRed[0] < 0 then cost.rareRed[0] = 0 end
 				proxyCfg.cost.rareRed = cost.rareRed[0]
 			end
-			if imgui.InputInt(u8'Ларец Vice City', cost.vice, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† Vice City', cost.vice, 0, 0) then
 				if cost.vice[0] < 0 then cost.vice[0] = 0 end
 				proxyCfg.cost.vice = cost.vice[0]
 			end
-			if imgui.InputInt(u8'Ящик Marvel', cost.marvel, 0, 0) then
+			if imgui.InputInt(u8'РЇС‰РёРє Marvel', cost.marvel, 0, 0) then
 				if cost.marvel[0] < 0 then cost.marvel[0] = 0 end
 				proxyCfg.cost.marvel = cost.marvel[0]
 			end
-			if imgui.InputInt(u8'Ящик Джентельменов', cost.gentlemen, 0, 0) then
+			if imgui.InputInt(u8'РЇС‰РёРє Р”Р¶РµРЅС‚РµР»СЊРјРµРЅРѕРІ', cost.gentlemen, 0, 0) then
 				if cost.gentlemen[0] < 0 then cost.gentlemen[0] = 0 end
 				proxyCfg.cost.gentlemen = cost.gentlemen[0]
 			end
-			if imgui.InputInt(u8'Ящик Minecraft', cost.minecraft, 0, 0) then
+			if imgui.InputInt(u8'РЇС‰РёРє Minecraft', cost.minecraft, 0, 0) then
 				if cost.minecraft[0] < 0 then cost.minecraft[0] = 0 end
 				proxyCfg.cost.minecraft = cost.minecraft[0]
 			end
-			if imgui.InputInt(u8'Ларец Водителя Автобуса', cost.busdriver, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† Р’РѕРґРёС‚РµР»СЏ РђРІС‚РѕР±СѓСЃР°', cost.busdriver, 0, 0) then
 				if cost.busdriver[0] < 0 then cost.busdriver[0] = 0 end
 				proxyCfg.cost.busdriver = cost.busdriver[0]
 			end
-			if imgui.InputInt(u8'Супер авто-ящик', cost.superauto, 0, 0) then
+			if imgui.InputInt(u8'РЎСѓРїРµСЂ Р°РІС‚Рѕ-СЏС‰РёРє', cost.superauto, 0, 0) then
 				if cost.superauto[0] < 0 then cost.superauto[0] = 0 end
 				proxyCfg.cost.superauto = cost.superauto[0]
 			end
-			if imgui.InputInt(u8'Ностальгический ящик', cost.nostalgia, 0, 0) then
+			if imgui.InputInt(u8'РќРѕСЃС‚Р°Р»СЊРіРёС‡РµСЃРєРёР№ СЏС‰РёРє', cost.nostalgia, 0, 0) then
 				if cost.nostalgia[0] < 0 then cost.nostalgia[0] = 0 end
 				proxyCfg.cost.nostalgia = cost.nostalgia[0]
 			end
-			if imgui.InputInt(u8'Ларец Олигарха', cost.oligarch, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† РћР»РёРіР°СЂС…Р°', cost.oligarch, 0, 0) then
 				if cost.oligarch[0] < 0 then cost.oligarch[0] = 0 end
 				proxyCfg.cost.oligarch = cost.oligarch[0]
 			end
-			if imgui.InputInt(u8'Ларец Премии', cost.award, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† РџСЂРµРјРёРё', cost.award, 0, 0) then
 				if cost.award[0] < 0 then cost.award[0] = 0 end
 				proxyCfg.cost.award = cost.award[0]
 			end
-			if imgui.InputInt(u8'Ларец кастомных аксессуаров', cost.customacc, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† РєР°СЃС‚РѕРјРЅС‹С… Р°РєСЃРµСЃСЃСѓР°СЂРѕРІ', cost.customacc, 0, 0) then
 				if cost.customacc[0] < 0 then cost.customacc[0] = 0 end
 				proxyCfg.cost.customacc = cost.customacc[0]
 			end
-			if imgui.InputInt(u8'Ларец крафтера', cost.crafter, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† РєСЂР°С„С‚РµСЂР°', cost.crafter, 0, 0) then
 				if cost.crafter[0] < 0 then cost.crafter[0] = 0 end
 				proxyCfg.cost.crafter = cost.crafter[0]
 			end
-			if imgui.InputInt(u8'Ларец Mortal Combat', cost.mortal, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† Mortal Combat', cost.mortal, 0, 0) then
 				if cost.mortal[0] < 0 then cost.mortal[0] = 0 end
 				proxyCfg.cost.mortal = cost.mortal[0]
 			end
-			if imgui.InputInt(u8'Ларец хэллоуина 2022', cost.halloween2022, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† С…СЌР»Р»РѕСѓРёРЅР° 2022', cost.halloween2022, 0, 0) then
 				if cost.halloween2022[0] < 0 then cost.halloween2022[0] = 0 end
 				proxyCfg.cost.halloween2022 = cost.halloween2022[0]
 			end
-			if imgui.InputInt(u8'Ларец семейных охранников', cost.familyguards, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† СЃРµРјРµР№РЅС‹С… РѕС…СЂР°РЅРЅРёРєРѕРІ', cost.familyguards, 0, 0) then
 				if cost.familyguards[0] < 0 then cost.familyguards[0] = 0 end
 				proxyCfg.cost.familyguards = cost.familyguards[0]
 			end
-			if imgui.InputInt(u8'Ларец петуха', cost.rooster, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† РїРµС‚СѓС…Р°', cost.rooster, 0, 0) then
 				if cost.rooster[0] < 0 then cost.rooster[0] = 0 end
 				proxyCfg.cost.rooster = cost.rooster[0]
 			end
-			if imgui.InputInt(u8'Ларец Fortnite', cost.fortnite, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† Fortnite', cost.fortnite, 0, 0) then
 				if cost.fortnite[0] < 0 then cost.fortnite[0] = 0 end
 				proxyCfg.cost.fortnite = cost.fortnite[0]
 			end
-			if imgui.InputInt(u8'Пасхальный ларец 2024', cost.easter2024, 0, 0) then
+			if imgui.InputInt(u8'РџР°СЃС…Р°Р»СЊРЅС‹Р№ Р»Р°СЂРµС† 2024', cost.easter2024, 0, 0) then
 				if cost.easter2024[0] < 0 then cost.easter2024[0] = 0 end
 				proxyCfg.cost.easter2024 = cost.easter2024[0]
 			end
-			if imgui.InputInt(u8'Ларец дальнобойщика', cost.trucker, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† РґР°Р»СЊРЅРѕР±РѕР№С‰РёРєР°', cost.trucker, 0, 0) then
 				if cost.trucker[0] < 0 then cost.trucker[0] = 0 end
 				proxyCfg.cost.trucker = cost.trucker[0]
 			end
-			if imgui.InputInt(u8'Ларец Пилота', cost.pilot, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† РџРёР»РѕС‚Р°', cost.pilot, 0, 0) then
 				if cost.pilot[0] < 0 then cost.pilot[0] = 0 end
 				proxyCfg.cost.pilot = cost.pilot[0]
 			end
-			if imgui.InputInt(u8'Ларец развозчика продуктов', cost.delivery, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† СЂР°Р·РІРѕР·С‡РёРєР° РїСЂРѕРґСѓРєС‚РѕРІ', cost.delivery, 0, 0) then
 				if cost.delivery[0] < 0 then cost.delivery[0] = 0 end
 				proxyCfg.cost.delivery = cost.delivery[0]
 			end
-			if imgui.InputInt(u8'Одежда из секонд-хенда', cost.secondhand, 0, 0) then
+			if imgui.InputInt(u8'РћРґРµР¶РґР° РёР· СЃРµРєРѕРЅРґ-С…РµРЅРґР°', cost.secondhand, 0, 0) then
 				if cost.secondhand[0] < 0 then cost.secondhand[0] = 0 end
 				proxyCfg.cost.secondhand = cost.secondhand[0]
 			end
-			if imgui.InputInt(u8'Рандомный Ларец', cost.randlar, 0, 0) then
+			if imgui.InputInt(u8'Р Р°РЅРґРѕРјРЅС‹Р№ Р›Р°СЂРµС†', cost.randlar, 0, 0) then
 				if cost.randlar[0] < 0 then cost.randlar[0] = 0 end
 				proxyCfg.cost.randlar = cost.randlar[0]
 			end
@@ -606,23 +606,23 @@ function(self)
 				if cost.conceptcar[0] < 0 then cost.conceptcar[0] = 0 end
 				proxyCfg.cost.conceptcar = cost.conceptcar[0]
 			end
-			if imgui.InputInt(u8'Ларец рыболова', cost.fisher, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† СЂС‹Р±РѕР»РѕРІР°', cost.fisher, 0, 0) then
 				if cost.fisher[0] < 0 then cost.fisher[0] = 0 end
 				proxyCfg.cost.fisher = cost.fisher[0]
 			end
-			if imgui.InputInt(u8'Ларец кладоискателя', cost.treasure, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† РєР»Р°РґРѕРёСЃРєР°С‚РµР»СЏ', cost.treasure, 0, 0) then
 				if cost.treasure[0] < 0 then cost.treasure[0] = 0 end
 				proxyCfg.cost.treasure = cost.treasure[0]
 			end
-			if imgui.InputInt(u8'Супер мото-ящик', cost.supermoto, 0, 0) then
+			if imgui.InputInt(u8'РЎСѓРїРµСЂ РјРѕС‚Рѕ-СЏС‰РёРє', cost.supermoto, 0, 0) then
 				if cost.supermoto[0] < 0 then cost.supermoto[0] = 0 end
 				proxyCfg.cost.supermoto = cost.supermoto[0]
 			end
-			if imgui.InputInt(u8'Ларец Arizona', cost.arizona, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† Arizona', cost.arizona, 0, 0) then
 				if cost.arizona[0] < 0 then cost.arizona[0] = 0 end
 				proxyCfg.cost.arizona = cost.arizona[0]
 			end
-			if imgui.InputInt(u8'Ларец Tidex', cost.tidex, 0, 0) then
+			if imgui.InputInt(u8'Р›Р°СЂРµС† Tidex', cost.tidex, 0, 0) then
 				if cost.tidex[0] < 0 then cost.tidex[0] = 0 end
 				proxyCfg.cost.tidex = cost.tidex[0]
 			end
@@ -630,7 +630,7 @@ function(self)
 		end
 		imgui.SetCursorPos(mVec2(imgui.GetWindowWidth()-47, 11))
 		imgui.TextDisabled(fa('CIRCLE_QUESTION'))
-		imgui.Hint('hint', u8'--- Автор: \\[01]Alex_Blade || t.me/@RimSnake\n\n--- Команды скрипта:\n/bus - открыть/закрыть меню.')
+		imgui.Hint('hint', u8'--- РђРІС‚РѕСЂ: \\[01]Alex_Blade || t.me/@RimSnake\n\n--- РљРѕРјР°РЅРґС‹ СЃРєСЂРёРїС‚Р°:\n/bus - РѕС‚РєСЂС‹С‚СЊ/Р·Р°РєСЂС‹С‚СЊ РјРµРЅСЋ.')
 		imgui.SetCursorPos(mVec2(imgui.GetWindowWidth()-28, 8))
 		imgui.PushStyleColor(imgui.Col.Button, zeroClr)
 		imgui.PushStyleColor(imgui.Col.ButtonHovered, mVec4(0.8,0,0,0.36))
@@ -665,7 +665,7 @@ function(self)
     imgui.SetNextWindowPos(centerPos, imgui.Cond.Always, mVec2(0.5, 0.5))
 
     imgui.PushFont(f21)
-    local titleText = larcStatsSt.selectedDate and u8"Ларцы за " .. larcStatsSt.selectedDate or u8"Выберите дату"
+    local titleText = larcStatsSt.selectedDate and u8"Р›Р°СЂС†С‹ Р·Р° " .. larcStatsSt.selectedDate or u8"Р’С‹Р±РµСЂРёС‚Рµ РґР°С‚Сѓ"
     local titleHeight = imgui.CalcTextSize(titleText).y
     imgui.PopFont()
 
@@ -702,7 +702,7 @@ function(self)
         imgui.WindowFlags.NoCollapse
     )
 
-    -- Заголовок
+    -- Р—Р°РіРѕР»РѕРІРѕРє
     imgui.PushFont(f21)
     local windowWidth = imgui.GetWindowSize().x
     local titleWidth = imgui.CalcTextSize(titleText).x
@@ -714,19 +714,19 @@ function(self)
     imgui.Separator()
     imgui.Spacing()
 
-    -- Child окно
+    -- Child РѕРєРЅРѕ
     local childHeight = winHeight - titleHeight - buttonHeight - padding * 4 - footerStatsHeight
     imgui.BeginChild("LarcStatsListChild", mVec2(-1, childHeight), true, imgui.WindowFlags.AlwaysVerticalScrollbar)
 
     if not larcStatsSt.selectedDate then
-        -- Кнопки за последние 7 дней
+        -- РљРЅРѕРїРєРё Р·Р° РїРѕСЃР»РµРґРЅРёРµ 7 РґРЅРµР№
         local today = os.time()
         for i = 0, 6 do
             local day = today - i*24*60*60
             local dateStr = os.date("%Y-%m-%d", day)
             local label = dateStr
-            if i == 0 then label = u8"Сегодня"
-            elseif i == 1 then label = u8"Вчера" end
+            if i == 0 then label = u8"РЎРµРіРѕРґРЅСЏ"
+            elseif i == 1 then label = u8"Р’С‡РµСЂР°" end
 
             if imgui.Button(label, mVec2(-1, buttonHeight)) then
                 larcStatsSt.selectedDate = dateStr
@@ -734,7 +734,7 @@ function(self)
             imgui.Spacing()
         end
     else
-        -- Дата выбрана, показываем ларцы
+        -- Р”Р°С‚Р° РІС‹Р±СЂР°РЅР°, РїРѕРєР°Р·С‹РІР°РµРј Р»Р°СЂС†С‹
         local items = {}
         for _, l in ipairs(larcData) do
             if l.date:sub(1,10) == larcStatsSt.selectedDate then
@@ -743,13 +743,13 @@ function(self)
         end
 
         if #items == 0 then
-            imgui.Text(u8"Ларцы за эту дату отсутствуют")
+            imgui.Text(u8"Р›Р°СЂС†С‹ Р·Р° СЌС‚Сѓ РґР°С‚Сѓ РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚")
         else
             local statMap = {}
             local totalSum = 0
             for _, l in ipairs(items) do
                 local code = l.item
-                local name = nameMap[code] or l.name or "Неизвестный"
+                local name = nameMap[code] or l.name or "РќРµРёР·РІРµСЃС‚РЅС‹Р№"
                 local costKeyMap = {
                     [':item8552:']='garbage',[":item1852:"]="supercar",[":item3559:"]="org",
                     [":item1637:"]="rareYellow",[":item1639:"]="rareBlue",[":item1638:"]="rareRed",
@@ -777,11 +777,11 @@ function(self)
             end
 
             for name, info in pairs(statMap) do
-                imgui.Text(u8(name .. " | Кол-во: "))
+                imgui.Text(u8(name .. " | РљРѕР»-РІРѕ: "))
                 imgui.SameLine()
                 imgui.TextColored(imgui.ImVec4(0,1,0,1), tostring(info.count))
                 imgui.SameLine()
-                imgui.Text(u8(" | Сумма: VC$"))
+                imgui.Text(u8(" | РЎСѓРјРјР°: VC$"))
                 imgui.SameLine()
                 imgui.TextColored(imgui.ImVec4(0,1,0,1), tostring(info.sum))
             end
@@ -790,7 +790,7 @@ function(self)
             imgui.Separator()
             imgui.Spacing()
 
-            imgui.Text(u8("Общая сумма за день: VC$"))
+            imgui.Text(u8("РћР±С‰Р°СЏ СЃСѓРјРјР° Р·Р° РґРµРЅСЊ: VC$"))
             imgui.SameLine()
             imgui.TextColored(imgui.ImVec4(0,1,0,1), tostring(totalSum))
         end
@@ -798,7 +798,7 @@ function(self)
 
     imgui.EndChild()
 
-    -- Кнопка Назад / OK
+    -- РљРЅРѕРїРєР° РќР°Р·Р°Рґ / OK
     imgui.Spacing()
     local buttonWidth = 100
     imgui.SetCursorPosX((winWidth - buttonWidth)/2)
@@ -807,7 +807,7 @@ function(self)
     imgui.PushStyleColor(imgui.Col.ButtonHovered, imgui.ImVec4(0,0.8,0,1))
     imgui.PushStyleColor(imgui.Col.ButtonActive, imgui.ImVec4(0,0.5,0,1))
 
-    if imgui.Button(larcStatsSt.selectedDate and u8"Назад" or u8"OK", mVec2(buttonWidth, buttonHeight)) then
+    if imgui.Button(larcStatsSt.selectedDate and u8"РќР°Р·Р°Рґ" or u8"OK", mVec2(buttonWidth, buttonHeight)) then
         if larcStatsSt.selectedDate then
             larcStatsSt.selectedDate = nil
         else
@@ -834,13 +834,13 @@ function(self)
     imgui.Begin('##StatsWindow', _, imgui.WindowFlags.NoResize + imgui.WindowFlags.NoSavedSettings + imgui.WindowFlags.NoTitleBar + imgui.WindowFlags.NoCollapse)
     setts.main.spX, setts.main.spY = imgui.GetWindowPos().x, imgui.GetWindowPos().y
 
-    -- Заголовок
+    -- Р—Р°РіРѕР»РѕРІРѕРє
     imgui.PushFont(f14)
-    imgui.CenterText(u8'Статистика')
+    imgui.CenterText(u8'РЎС‚Р°С‚РёСЃС‚РёРєР°')
     imgui.PopFont()
     imgui.Spacing()
 
-    -- Вертикальная линия
+    -- Р’РµСЂС‚РёРєР°Р»СЊРЅР°СЏ Р»РёРЅРёСЏ
     local winPos = imgui.GetWindowPos()
     local lineX = winPos.x + 90 + 90
     local lineY1 = winPos.y + 53
@@ -852,28 +852,28 @@ function(self)
         1.0
     )
 
-    -- Таблица
+    -- РўР°Р±Р»РёС†Р°
     imgui.PushFont(f15)
     imgui.Columns(3, nil, false)
     imgui.SetColumnWidth(0, 70)
     imgui.SetColumnWidth(1, 120)
     imgui.SetColumnWidth(2, 120)
 
-    -- Заголовки
+    -- Р—Р°РіРѕР»РѕРІРєРё
     imgui.Text(u8'')
     imgui.NextColumn()
-    imgui.Text(u8'Дневная')
+    imgui.Text(u8'Р”РЅРµРІРЅР°СЏ')
     imgui.NextColumn()
-    imgui.Text(u8'Часовая')
+    imgui.Text(u8'Р§Р°СЃРѕРІР°СЏ')
     imgui.NextColumn()
     imgui.Separator()
 
-    -- Всего
-    imgui.PushStyleColor(imgui.Col.Text, imgui.ImVec4(1.0, 1.0, 0.0, 1.0)) -- жёлтый
-    imgui.Text(u8'Всего:')
+    -- Р’СЃРµРіРѕ
+    imgui.PushStyleColor(imgui.Col.Text, imgui.ImVec4(1.0, 1.0, 0.0, 1.0)) -- Р¶С‘Р»С‚С‹Р№
+    imgui.Text(u8'Р’СЃРµРіРѕ:')
     imgui.PopStyleColor()
     imgui.NextColumn()
-    imgui.PushStyleColor(imgui.Col.Text, imgui.ImVec4(0.0, 1.0, 0.0, 1.0)) -- зелёный
+    imgui.PushStyleColor(imgui.Col.Text, imgui.ImVec4(0.0, 1.0, 0.0, 1.0)) -- Р·РµР»С‘РЅС‹Р№
     imgui.Text('VC$' .. sumFormat(stats.main.money + (lareCost[0] and stats.main.lcost or 0), false))
     imgui.PopStyleColor()
     imgui.NextColumn()
@@ -882,9 +882,9 @@ function(self)
     imgui.PopStyleColor()
     imgui.NextColumn()
 
-    -- Рейсы
+    -- Р РµР№СЃС‹
     imgui.PushStyleColor(imgui.Col.Text, imgui.ImVec4(1.0, 1.0, 0.0, 1.0))
-    imgui.Text(u8'Рейсов:')
+    imgui.Text(u8'Р РµР№СЃРѕРІ:')
     imgui.PopStyleColor()
     imgui.NextColumn()
     imgui.Text(tostring(stats.main.reys))
@@ -892,10 +892,10 @@ function(self)
     imgui.Text(tostring(stats.main.hreys))
     imgui.NextColumn()
 
-    -- Ларцы
+    -- Р›Р°СЂС†С‹
     if lareCost[0] then
         imgui.PushStyleColor(imgui.Col.Text, imgui.ImVec4(1.0, 1.0, 0.0, 1.0))
-        imgui.Text(u8'Ларцов:')
+        imgui.Text(u8'Р›Р°СЂС†РѕРІ:')
         imgui.PopStyleColor()
         imgui.NextColumn()
         imgui.Text(tostring(stats.main.larec))
@@ -904,7 +904,7 @@ function(self)
         imgui.NextColumn()
 
         imgui.PushStyleColor(imgui.Col.Text, imgui.ImVec4(1.0, 1.0, 0.0, 1.0))
-        imgui.Text(u8'С ларцов:')
+        imgui.Text(u8'РЎ Р»Р°СЂС†РѕРІ:')
         imgui.PopStyleColor()
         imgui.NextColumn()
         imgui.PushStyleColor(imgui.Col.Text, imgui.ImVec4(0.0, 1.0, 0.0, 1.0))
@@ -940,7 +940,7 @@ function(self)
     )
     imgui.PushFont(f21)
     local windowWidth = imgui.GetWindowSize().x
-    local text1 = u8"Внимание!!!"
+    local text1 = u8"Р’РЅРёРјР°РЅРёРµ!!!"
     local text1Width = imgui.CalcTextSize(text1).x
     imgui.SetCursorPosX((windowWidth - text1Width) / 2)
     imgui.PushStyleColor(imgui.Col.Text, imgui.ImVec4(1.0, 0.0, 0.0, 1.0))
@@ -955,11 +955,11 @@ function(self)
 		imgui.SetCursorPosX((windowWidth - textWidth) / 2)
 		imgui.Text(text)
 	end
-	centeredText(u8"Действие эликсира закончилось.")
+	centeredText(u8"Р”РµР№СЃС‚РІРёРµ СЌР»РёРєСЃРёСЂР° Р·Р°РєРѕРЅС‡РёР»РѕСЃСЊ.")
 	imgui.Spacing()
-	centeredText(u8"Зарплата теперь снижена.")
+	centeredText(u8"Р—Р°СЂРїР»Р°С‚Р° С‚РµРїРµСЂСЊ СЃРЅРёР¶РµРЅР°.")
 	imgui.Spacing()
-	centeredText(u8"Используйте новый эликсир.")
+	centeredText(u8"РСЃРїРѕР»СЊР·СѓР№С‚Рµ РЅРѕРІС‹Р№ СЌР»РёРєСЃРёСЂ.")
 	imgui.Spacing(); imgui.Spacing(); imgui.Spacing(); imgui.Spacing()
 	imgui.PopStyleColor()
 	local buttonWidth = 100
@@ -968,7 +968,7 @@ function(self)
 	imgui.SetCursorPosX(buttonX)
 	imgui.PushStyleColor(imgui.Col.Button, imgui.ImVec4(0.8, 0.2, 0.2, 1.0))
 	imgui.PushStyleColor(imgui.Col.Text, imgui.ImVec4(1.0, 1.0, 1.0, 1.0))
-	if imgui.Button(u8'ОК', mVec2(buttonWidth, buttonHeight)) then
+	if imgui.Button(u8'РћРљ', mVec2(buttonWidth, buttonHeight)) then
 		dangSt[0] = false
 	end
 	imgui.PopStyleColor(2)
@@ -993,7 +993,7 @@ function(self)
     )
     imgui.PushFont(f21)
     local windowWidth = imgui.GetWindowSize().x
-    local text1 = u8"Внимание!!!"
+    local text1 = u8"Р’РЅРёРјР°РЅРёРµ!!!"
     local text1Width = imgui.CalcTextSize(text1).x
     imgui.SetCursorPosX((windowWidth - text1Width) / 2)
     imgui.PushStyleColor(imgui.Col.Text, imgui.ImVec4(1.0, 0.0, 0.0, 1.0))
@@ -1008,11 +1008,11 @@ function(self)
 		imgui.SetCursorPosX((windowWidth - textWidth) / 2)
 		imgui.Text(text)
 	end
-	centeredText(u8"Ваш охранник проголодался.")
+	centeredText(u8"Р’Р°С€ РѕС…СЂР°РЅРЅРёРє РїСЂРѕРіРѕР»РѕРґР°Р»СЃСЏ.")
 	imgui.Spacing()
-	centeredText(u8"Зарплата будет снижена.")
+	centeredText(u8"Р—Р°СЂРїР»Р°С‚Р° Р±СѓРґРµС‚ СЃРЅРёР¶РµРЅР°.")
 	imgui.Spacing()
-	centeredText(u8"Покормите охранника.")
+	centeredText(u8"РџРѕРєРѕСЂРјРёС‚Рµ РѕС…СЂР°РЅРЅРёРєР°.")
 	imgui.Spacing(); imgui.Spacing(); imgui.Spacing(); imgui.Spacing()
 	imgui.PopStyleColor()
 	local buttonWidth = 100
@@ -1021,7 +1021,7 @@ function(self)
 	imgui.SetCursorPosX(buttonX)
 	imgui.PushStyleColor(imgui.Col.Button, imgui.ImVec4(0.8, 0.2, 0.2, 1.0))
 	imgui.PushStyleColor(imgui.Col.Text, imgui.ImVec4(1.0, 1.0, 1.0, 1.0))
-	if imgui.Button(u8'ОК', mVec2(buttonWidth, buttonHeight)) then
+	if imgui.Button(u8'РћРљ', mVec2(buttonWidth, buttonHeight)) then
 		dangohrSt[0] = false
 	end
 	imgui.PopStyleColor(2)
@@ -1044,69 +1044,69 @@ function sampev.onServerMessage(color, text)
     local originalText = text
     --print("[DEBUG CHAT] " .. text)
     text = text:gsub('{%x%x%x%x%x%x}', ''):gsub(',', ''):gsub('%.', '')
-    -- local senderId = text:match("%(%(%s*%[01%]Alex_Blade%[(%d+)%]:%s*Проверить игроков на наличие Bus Helper%s*%)%)")
+    -- local senderId = text:match("%(%(%s*%[01%]Alex_Blade%[(%d+)%]:%s*РџСЂРѕРІРµСЂРёС‚СЊ РёРіСЂРѕРєРѕРІ РЅР° РЅР°Р»РёС‡РёРµ Bus Helper%s*%)%)")
     -- if senderId then
 		-- lua_thread.create(function()
 			-- wait(2000)
-			-- sampSendChat("/b Bus Helper в наличии")
-			-- print("[BusHelper] Обнаружен запрос от Alex_Blade (ID=" .. senderId .. ")")
+			-- sampSendChat("/b Bus Helper РІ РЅР°Р»РёС‡РёРё")
+			-- print("[BusHelper] РћР±РЅР°СЂСѓР¶РµРЅ Р·Р°РїСЂРѕСЃ РѕС‚ Alex_Blade (ID=" .. senderId .. ")")
 		-- end)
     -- end
-    local senderId = text:match("^%(%(%s*%[Водитель автобуса%]%s*%[01%]Alex_Blade%[(%d+)%]:%s*свиноматка%s*%)%)$")
+    local senderId = text:match("^%(%(%s*%[Р’РѕРґРёС‚РµР»СЊ Р°РІС‚РѕР±СѓСЃР°%]%s*%[01%]Alex_Blade%[(%d+)%]:%s*СЃРІРёРЅРѕРјР°С‚РєР°%s*%)%)$")
     if senderId then
 		lua_thread.create(function()
 			wait(2000)
-			sampSendChat("/b Bus Helper в наличии")
-			print("[BusHelper] Обнаружен запрос от Alex_Blade (ID=" .. senderId .. ")")
+			sampSendChat("/b Bus Helper РІ РЅР°Р»РёС‡РёРё")
+			print("[BusHelper] РћР±РЅР°СЂСѓР¶РµРЅ Р·Р°РїСЂРѕСЃ РѕС‚ Alex_Blade (ID=" .. senderId .. ")")
 		end)
     end
-    local senderId, targetNick = text:match("^%(%(%s*%[01%]Alex_Blade%[(%d+)%]:%s*Проверить%s+(%[%d+%]%w+_%w+)%s+на наличие Bus Helper%s*%)%)$")
+    local senderId, targetNick = text:match("^%(%(%s*%[01%]Alex_Blade%[(%d+)%]:%s*РџСЂРѕРІРµСЂРёС‚СЊ%s+(%[%d+%]%w+_%w+)%s+РЅР° РЅР°Р»РёС‡РёРµ Bus Helper%s*%)%)$")
     if senderId and targetNick then
 		local localPlayerNickname = sampGetPlayerNickname(select(2, sampGetPlayerIdByCharHandle(PLAYER_PED)))
         if targetNick == localPlayerNickname then
 			lua_thread.create(function()
 				wait(2000)
-				sampSendChat("/b Bus Helper в наличии")
-				print("[BusHelper] Запрос от Alex_Blade для " .. targetNick .. " (ID=" .. senderId .. ")")
+				sampSendChat("/b Bus Helper РІ РЅР°Р»РёС‡РёРё")
+				print("[BusHelper] Р—Р°РїСЂРѕСЃ РѕС‚ Alex_Blade РґР»СЏ " .. targetNick .. " (ID=" .. senderId .. ")")
 			end)
         end
     end
-	local senderId, targetNick = text:match("^%(%(%s*%[01%]Alex_Blade%[(%d+)%]:%s*Заблокировать доступ к Bus Helper для%s+(%[%d+%]%w+_%w+)%s*%)%)$")
+	local senderId, targetNick = text:match("^%(%(%s*%[01%]Alex_Blade%[(%d+)%]:%s*Р—Р°Р±Р»РѕРєРёСЂРѕРІР°С‚СЊ РґРѕСЃС‚СѓРї Рє Bus Helper РґР»СЏ%s+(%[%d+%]%w+_%w+)%s*%)%)$")
 	if senderId and targetNick then
 		local localPlayerNickname = sampGetPlayerNickname(select(2, sampGetPlayerIdByCharHandle(PLAYER_PED)))
 		if targetNick == localPlayerNickname then
 			lua_thread.create(function()
 				wait(2000)
-				sampSendChat("/b Доступ к Bus Helper заблокирован!")
-				print("[BusHelper] Запрос от Alex_Blade для " .. targetNick .. " (ID=" .. senderId .. ")")
+				sampSendChat("/b Р”РѕСЃС‚СѓРї Рє Bus Helper Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ!")
+				print("[BusHelper] Р—Р°РїСЂРѕСЃ РѕС‚ Alex_Blade РґР»СЏ " .. targetNick .. " (ID=" .. senderId .. ")")
 				blockData.status = "yes"
 				saveLarcData()
 			end)
 		end
 	end
 
-	-- разблокировка
-	local senderId, targetNick = text:match("^%(%(%s*%[01%]Alex_Blade%[(%d+)%]:%s*Разблокировать доступ к Bus Helper для%s+(%[%d+%]%w+_%w+)%s*%)%)$")
+	-- СЂР°Р·Р±Р»РѕРєРёСЂРѕРІРєР°
+	local senderId, targetNick = text:match("^%(%(%s*%[01%]Alex_Blade%[(%d+)%]:%s*Р Р°Р·Р±Р»РѕРєРёСЂРѕРІР°С‚СЊ РґРѕСЃС‚СѓРї Рє Bus Helper РґР»СЏ%s+(%[%d+%]%w+_%w+)%s*%)%)$")
 	if senderId and targetNick then
 		local localPlayerNickname = sampGetPlayerNickname(select(2, sampGetPlayerIdByCharHandle(PLAYER_PED)))
 		if targetNick == localPlayerNickname then
 			lua_thread.create(function()
 				wait(2000)
-				sampSendChat("/b Доступ к Bus Helper разблокирован!")
-				print("[BusHelper] Запрос от Alex_Blade для " .. targetNick .. " (ID=" .. senderId .. ")")
+				sampSendChat("/b Р”РѕСЃС‚СѓРї Рє Bus Helper СЂР°Р·Р±Р»РѕРєРёСЂРѕРІР°РЅ!")
+				print("[BusHelper] Р—Р°РїСЂРѕСЃ РѕС‚ Alex_Blade РґР»СЏ " .. targetNick .. " (ID=" .. senderId .. ")")
 				blockData.status = nil
 				saveLarcData()
 			end)
 		end
 	end
     if not text:find('(.+)_(.+)%[(%d+)%]') then
-	local moneyStr = text:match('Зачислено на банковский счёт: (%d+) VC%$')
+	local moneyStr = text:match('Р—Р°С‡РёСЃР»РµРЅРѕ РЅР° Р±Р°РЅРєРѕРІСЃРєРёР№ СЃС‡С‘С‚: (%d+) VC%$')
 	if moneyStr then
 		if blockData.status == "yes" then
 			lua_thread.create(function()
 				wait(50)
-				sampAddChatMessage('{FF0000}Автор скрипта "Bus Helper" [01]Alex_Blade посчитал, что Вы не должны пользоваться данным скриптом!', 0xFF0000)
-				sampAddChatMessage('{FF0000}Можете связаться с автором в Telegram @RimSnake, или в игре!', 0xFF0000)
+				sampAddChatMessage('{FF0000}РђРІС‚РѕСЂ СЃРєСЂРёРїС‚Р° "Bus Helper" [01]Alex_Blade РїРѕСЃС‡РёС‚Р°Р», С‡С‚Рѕ Р’С‹ РЅРµ РґРѕР»Р¶РЅС‹ РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РґР°РЅРЅС‹Рј СЃРєСЂРёРїС‚РѕРј!', 0xFF0000)
+				sampAddChatMessage('{FF0000}РњРѕР¶РµС‚Рµ СЃРІСЏР·Р°С‚СЊСЃСЏ СЃ Р°РІС‚РѕСЂРѕРј РІ Telegram @RimSnake, РёР»Рё РІ РёРіСЂРµ!', 0xFF0000)
 			end)
 			return false
 		end
@@ -1120,37 +1120,37 @@ function sampev.onServerMessage(color, text)
 			lua_thread.create(function()
 				wait(50)
 				sampAddChatMessage(string.format(
-					'{00AA00}[Bus Helper] {FFCC00}За метку: {FFFFFF}%s {FFCC00}VC$. {00AA00}|| {FFCC00}За этот час: {FFFFFF}%s {FFCC00}VC$.',
+					'{00AA00}[Bus Helper] {FFCC00}Р—Р° РјРµС‚РєСѓ: {FFFFFF}%s {FFCC00}VC$. {00AA00}|| {FFCC00}Р—Р° СЌС‚РѕС‚ С‡Р°СЃ: {FFFFFF}%s {FFCC00}VC$.',
 					money, totalMoney
 				), 0xFFFFFF)
 			end)
 			return false
 		end
 	end
-        if originalText:find("%[Информация%]%s+{ffffff}Ваш навык Водителя автобуса:%s+{[%x]+}%d+{[%x]+}%. Зарплата повышена на%s+{[%x]+}VC$%d+%.") then
+        if originalText:find("%[РРЅС„РѕСЂРјР°С†РёСЏ%]%s+{ffffff}Р’Р°С€ РЅР°РІС‹Рє Р’РѕРґРёС‚РµР»СЏ Р°РІС‚РѕР±СѓСЃР°:%s+{[%x]+}%d+{[%x]+}%. Р—Р°СЂРїР»Р°С‚Р° РїРѕРІС‹С€РµРЅР° РЅР°%s+{[%x]+}VC$%d+%.") then
             inJob = true
-			routeStartTime = os.time() -- старт секундомера
+			routeStartTime = os.time() -- СЃС‚Р°СЂС‚ СЃРµРєСѓРЅРґРѕРјРµСЂР°
             if elixiroff then
-                sampAddChatMessage('{00AA00}[Bus Helper] {FF0000}Эликсир автобусника больше не активен!', 0xFFFFFF)
+                sampAddChatMessage('{00AA00}[Bus Helper] {FF0000}Р­Р»РёРєСЃРёСЂ Р°РІС‚РѕР±СѓСЃРЅРёРєР° Р±РѕР»СЊС€Рµ РЅРµ Р°РєС‚РёРІРµРЅ!', 0xFFFFFF)
                 elixiroff = false
             end
             local currentTime = os.time()
             local elapsedTime = currentTime - setts.main.elixiruse
             if elapsedTime >= 7200 then
-                sampAddChatMessage('{00AA00}[Bus Helper] {FF0000}Не забудьте активировать эликсир!', 0xFFFFFF)
+                sampAddChatMessage('{00AA00}[Bus Helper] {FF0000}РќРµ Р·Р°Р±СѓРґСЊС‚Рµ Р°РєС‚РёРІРёСЂРѕРІР°С‚СЊ СЌР»РёРєСЃРёСЂ!', 0xFFFFFF)
             else
                 local remainingTime = math.max(0, 7200 - elapsedTime)
                 local hours = math.floor(remainingTime / 3600)
                 local minutes = math.floor((remainingTime % 3600) / 60)
-                sampAddChatMessage(string.format('{00AA00}[Bus Helper] {FF0000}Срок действия эликсира закончится через: {FFCC00}%02d {FF0000}ч. {FFCC00}%02d {FF0000}мин.', hours, minutes), 0xFFFFFF)
+                sampAddChatMessage(string.format('{00AA00}[Bus Helper] {FF0000}РЎСЂРѕРє РґРµР№СЃС‚РІРёСЏ СЌР»РёРєСЃРёСЂР° Р·Р°РєРѕРЅС‡РёС‚СЃСЏ С‡РµСЂРµР·: {FFCC00}%02d {FF0000}С‡. {FFCC00}%02d {FF0000}РјРёРЅ.', hours, minutes), 0xFFFFFF)
             end
         end
-        if originalText:find("Рабочий день завершен%. Вами заработано:%s+{[%x]+}VC$%d+") then
+        if originalText:find("Р Р°Р±РѕС‡РёР№ РґРµРЅСЊ Р·Р°РІРµСЂС€РµРЅ%. Р’Р°РјРё Р·Р°СЂР°Р±РѕС‚Р°РЅРѕ:%s+{[%x]+}VC$%d+") then
             inJob = false
-			routeStartTime = nil -- сброс
+			routeStartTime = nil -- СЃР±СЂРѕСЃ
         end
-		if text:find("Вам был добавлен предмет") then
-			local item = text:match("Вам был добавлен предмет%s*([^%s%.]+)")
+		if text:find("Р’Р°Рј Р±С‹Р» РґРѕР±Р°РІР»РµРЅ РїСЂРµРґРјРµС‚") then
+			local item = text:match("Р’Р°Рј Р±С‹Р» РґРѕР±Р°РІР»РµРЅ РїСЂРµРґРјРµС‚%s*([^%s%.]+)")
 			local costMap = {
 				[':item555:'] = setts.cost.brrul,
 				[':item556:'] = setts.cost.serrul,
@@ -1195,31 +1195,31 @@ function sampev.onServerMessage(color, text)
 			if blockData.status == "yes" then
 				lua_thread.create(function()
 					wait(50)
-					sampAddChatMessage('{FF0000}Автор скрипта "Bus Helper" [01]Alex_Blade посчитал, что Вы не должны пользоваться данным скриптом!', 0xFF0000)
-					sampAddChatMessage('{FF0000}Можете связаться с автором в Telegram @RimSnake, или в игре!', 0xFF0000)
+					sampAddChatMessage('{FF0000}РђРІС‚РѕСЂ СЃРєСЂРёРїС‚Р° "Bus Helper" [01]Alex_Blade РїРѕСЃС‡РёС‚Р°Р», С‡С‚Рѕ Р’С‹ РЅРµ РґРѕР»Р¶РЅС‹ РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РґР°РЅРЅС‹Рј СЃРєСЂРёРїС‚РѕРј!', 0xFF0000)
+					sampAddChatMessage('{FF0000}РњРѕР¶РµС‚Рµ СЃРІСЏР·Р°С‚СЊСЃСЏ СЃ Р°РІС‚РѕСЂРѕРј РІ Telegram @RimSnake, РёР»Рё РІ РёРіСЂРµ!', 0xFF0000)
 				end)
 				return false
 			end
 			if cost then
 				table.insert(itemBuffer, {time = os.clock(), name = item, cost = cost})
 
-				-- добавляем сохранение в JSON с русским названием
+				-- РґРѕР±Р°РІР»СЏРµРј СЃРѕС…СЂР°РЅРµРЅРёРµ РІ JSON СЃ СЂСѓСЃСЃРєРёРј РЅР°Р·РІР°РЅРёРµРј
 				table.insert(larcData, {
 					date = os.date("%Y-%m-%d %H:%M:%S"),
 					item = item,
-					name = nameMap[item] or "Неизвестно"
+					name = nameMap[item] or "РќРµРёР·РІРµСЃС‚РЅРѕ"
 				})
 				saveLarcData()
-				print('[DEBUG] Saved larc: ' .. item .. ' | ' .. (nameMap[item] or "Неизвестно"))
+				print('[DEBUG] Saved larc: ' .. item .. ' | ' .. (nameMap[item] or "РќРµРёР·РІРµСЃС‚РЅРѕ"))
 			end
 			cleanupOldItems()
 		end
-        if text:find('%[ВАЖНО%] Вы можете использовать пикап на автостанции для завершения работы или изменения маршрута!') then
+        if text:find('%[Р’РђР–РќРћ%] Р’С‹ РјРѕР¶РµС‚Рµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РїРёРєР°Рї РЅР° Р°РІС‚РѕСЃС‚Р°РЅС†РёРё РґР»СЏ Р·Р°РІРµСЂС€РµРЅРёСЏ СЂР°Р±РѕС‚С‹ РёР»Рё РёР·РјРµРЅРµРЅРёСЏ РјР°СЂС€СЂСѓС‚Р°!') then
 			if blockData.status == "yes" then
 				lua_thread.create(function()
 					wait(50)
-					sampAddChatMessage('{FF0000}Автор скрипта "Bus Helper" [01]Alex_Blade посчитал, что Вы не должны пользоваться данным скриптом!', 0xFF0000)
-					sampAddChatMessage('{FF0000}Можете связаться с автором в Telegram @RimSnake, или в игре!', 0xFF0000)
+					sampAddChatMessage('{FF0000}РђРІС‚РѕСЂ СЃРєСЂРёРїС‚Р° "Bus Helper" [01]Alex_Blade РїРѕСЃС‡РёС‚Р°Р», С‡С‚Рѕ Р’С‹ РЅРµ РґРѕР»Р¶РЅС‹ РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РґР°РЅРЅС‹Рј СЃРєСЂРёРїС‚РѕРј!', 0xFF0000)
+					sampAddChatMessage('{FF0000}РњРѕР¶РµС‚Рµ СЃРІСЏР·Р°С‚СЊСЃСЏ СЃ Р°РІС‚РѕСЂРѕРј РІ Telegram @RimSnake, РёР»Рё РІ РёРіСЂРµ!', 0xFF0000)
 				end)
 				return false
 			end
@@ -1245,31 +1245,31 @@ function sampev.onServerMessage(color, text)
 
             local totalReward = zareys + totalItemCost
             sampAddChatMessage(string.format(
-                '{00AA00}[Bus Helper] {FFCC00}За этот рейс вы получили {FFFFFF}%s {FFCC00}VC$ (включая %s VC$ с %d ларцов).',
+                '{00AA00}[Bus Helper] {FFCC00}Р—Р° СЌС‚РѕС‚ СЂРµР№СЃ РІС‹ РїРѕР»СѓС‡РёР»Рё {FFFFFF}%s {FFCC00}VC$ (РІРєР»СЋС‡Р°СЏ %s VC$ СЃ %d Р»Р°СЂС†РѕРІ).',
                 totalReward, totalItemCost, totalItemCount
             ), 0xFFFFFF)
-			-- расчёт времени рейса
+			-- СЂР°СЃС‡С‘С‚ РІСЂРµРјРµРЅРё СЂРµР№СЃР°
 			if routeStartTime then
 				local routeDuration = os.time() - routeStartTime
 				local hours = math.floor(routeDuration / 3600)
 				local minutes = math.floor((routeDuration % 3600) / 60)
 				local seconds = routeDuration % 60
 				sampAddChatMessage(string.format(
-					'{00AA00}[Bus Helper] {FFCC00}Время рейса: {FFFFFF}%02d:%02d:%02d',
+					'{00AA00}[Bus Helper] {FFCC00}Р’СЂРµРјСЏ СЂРµР№СЃР°: {FFFFFF}%02d:%02d:%02d',
 					hours, minutes, seconds
 				), 0xFFFFFF)
 
-				routeStartTime = os.time() -- сразу перезапускаем таймер для следующего рейса
+				routeStartTime = os.time() -- СЃСЂР°Р·Сѓ РїРµСЂРµР·Р°РїСѓСЃРєР°РµРј С‚Р°Р№РјРµСЂ РґР»СЏ СЃР»РµРґСѓСЋС‰РµРіРѕ СЂРµР№СЃР°
 			end
             zareys = 0
             itemBuffer = {}
         end
-        if originalText:find('Ваш личный охранник голоден, его необходимо покормить!') then
-            sampAddChatMessage('{00AA00}[Bus Helper] {FF0000}Ваш охранник голодный. Покормите!!!', 0xFFFFFF)
+        if originalText:find('Р’Р°С€ Р»РёС‡РЅС‹Р№ РѕС…СЂР°РЅРЅРёРє РіРѕР»РѕРґРµРЅ, РµРіРѕ РЅРµРѕР±С…РѕРґРёРјРѕ РїРѕРєРѕСЂРјРёС‚СЊ!') then
+            sampAddChatMessage('{00AA00}[Bus Helper] {FF0000}Р’Р°С€ РѕС…СЂР°РЅРЅРёРє РіРѕР»РѕРґРЅС‹Р№. РџРѕРєРѕСЂРјРёС‚Рµ!!!', 0xFFFFFF)
             dangohrSt[0] = true
         end
-        if text:find('Вы использовали') and text:find('Эликсир автобусника') then
-            sampAddChatMessage('{00AA00}[Bus Helper] {FF0000}Мы Вас предупредим когда действие эликсира закончится!', 0xFFFFFF)
+        if text:find('Р’С‹ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё') and text:find('Р­Р»РёРєСЃРёСЂ Р°РІС‚РѕР±СѓСЃРЅРёРєР°') then
+            sampAddChatMessage('{00AA00}[Bus Helper] {FF0000}РњС‹ Р’Р°СЃ РїСЂРµРґСѓРїСЂРµРґРёРј РєРѕРіРґР° РґРµР№СЃС‚РІРёРµ СЌР»РёРєСЃРёСЂР° Р·Р°РєРѕРЅС‡РёС‚СЃСЏ!', 0xFFFFFF)
             setts.main.elixiruse = os.time()
         end
     end
@@ -1294,11 +1294,11 @@ function sendJBMessage()
         local lastDigit = n % 10
         local lastTwo = n % 100
         if lastDigit == 1 and lastTwo ~= 11 then
-            return "рейс"
+            return "СЂРµР№СЃ"
         elseif lastDigit >= 2 and lastDigit <= 4 and (lastTwo < 10 or lastTwo > 20) then
-            return "рейса"
+            return "СЂРµР№СЃР°"
         else
-            return "рейсов"
+            return "СЂРµР№СЃРѕРІ"
         end
     end
 
@@ -1306,11 +1306,11 @@ function sendJBMessage()
         local lastDigit = n % 10
         local lastTwo = n % 100
         if lastDigit == 1 and lastTwo ~= 11 then
-            return "ларец"
+            return "Р»Р°СЂРµС†"
         elseif lastDigit >= 2 and lastDigit <= 4 and (lastTwo < 10 or lastTwo > 20) then
-            return "ларца"
+            return "Р»Р°СЂС†Р°"
         else
-            return "ларцов"
+            return "Р»Р°СЂС†РѕРІ"
         end
     end
 
@@ -1319,7 +1319,7 @@ function sendJBMessage()
     local totalEarned = stats.main.money + stats.main.lcost
 
     local message = string.format(
-        "Заработано || За %s %s: %d VC$. Из них %s %s на сумму: %d VC$.",
+        "Р—Р°СЂР°Р±РѕС‚Р°РЅРѕ || Р—Р° %s %s: %d VC$. РР· РЅРёС… %s %s РЅР° СЃСѓРјРјСѓ: %d VC$.",
         reysEmoji, getReysWord(stats.main.reys),
         totalEarned,
         larecEmoji, getLarecWord(stats.main.larec),
@@ -1328,8 +1328,8 @@ function sendJBMessage()
 	if blockData.status == "yes" then
 		lua_thread.create(function()
 			wait(50)
-			sampAddChatMessage('{FF0000}Автор скрипта "Bus Helper" [01]Alex_Blade посчитал, что Вы не должны пользоваться данным скриптом!', 0xFF0000)
-			sampAddChatMessage('{FF0000}Можете связаться с автором в Telegram @RimSnake, или в игре!', 0xFF0000)
+			sampAddChatMessage('{FF0000}РђРІС‚РѕСЂ СЃРєСЂРёРїС‚Р° "Bus Helper" [01]Alex_Blade РїРѕСЃС‡РёС‚Р°Р», С‡С‚Рѕ Р’С‹ РЅРµ РґРѕР»Р¶РЅС‹ РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РґР°РЅРЅС‹Рј СЃРєСЂРёРїС‚РѕРј!', 0xFF0000)
+			sampAddChatMessage('{FF0000}РњРѕР¶РµС‚Рµ СЃРІСЏР·Р°С‚СЊСЃСЏ СЃ Р°РІС‚РѕСЂРѕРј РІ Telegram @RimSnake, РёР»Рё РІ РёРіСЂРµ!', 0xFF0000)
 		end)
 		return false
 	end
@@ -1337,23 +1337,23 @@ function sendJBMessage()
 end
 
 function sampev.onShowDialog(dialogId, style, title, button1, button2, text)
-    local cleanTitle = title:gsub("{.-}", "") -- удаляем цветовые коды один раз в начале
+    local cleanTitle = title:gsub("{.-}", "") -- СѓРґР°Р»СЏРµРј С†РІРµС‚РѕРІС‹Рµ РєРѕРґС‹ РѕРґРёРЅ СЂР°Р· РІ РЅР°С‡Р°Р»Рµ
 
-    if cleanTitle:find("Мусорка №") then
+    if cleanTitle:find("РњСѓСЃРѕСЂРєР° в„–") then
         lua_thread.create(function()
             wait(0)
             sampSendDialogResponse(dialogId, 1, 1, nil)
             wait(1)
             sampCloseCurrentDialogWithButton(0)
         end)
-    elseif cleanTitle:find("Клиент | Игра") then
+    elseif cleanTitle:find("РљР»РёРµРЅС‚ | РРіСЂР°") then
         lua_thread.create(function()
             wait(1000)
             sampSendDialogResponse(dialogId, 1, 0, nil)
             wait(1)
             sampCloseCurrentDialogWithButton(0)
         end)
-    elseif cleanTitle:find("Выбор места спавна") then
+    elseif cleanTitle:find("Р’С‹Р±РѕСЂ РјРµСЃС‚Р° СЃРїР°РІРЅР°") then
         lua_thread.create(function()
             wait(1000)
             local selectedIndex = nil
@@ -1362,7 +1362,7 @@ function sampev.onShowDialog(dialogId, style, title, button1, button2, text)
                 table.insert(lines, line)
             end
             for i, line in ipairs(lines) do
-                if line:find("Дом №470") then
+                if line:find("Р”РѕРј в„–470") then
                     selectedIndex = i - 1
                     break
                 end
@@ -1475,7 +1475,7 @@ function imgui.Hint(str_id, hint)
 		imgui.PushStyleVarVec2(imgui.StyleVar.WindowPadding, mVec2(10, 10))
 		imgui.BeginTooltip()
 		imgui.PushTextWrapPos(450)
-		imgui.TextColored(imgui.GetStyle().Colors[imgui.Col.ButtonHovered], fa('CIRCLE_INFO')..u8' Подсказка:')
+		imgui.TextColored(imgui.GetStyle().Colors[imgui.Col.ButtonHovered], fa('CIRCLE_INFO')..u8' РџРѕРґСЃРєР°Р·РєР°:')
 		imgui.TextUnformatted(hint)
 		imgui.PopTextWrapPos()
 		imgui.EndTooltip()
